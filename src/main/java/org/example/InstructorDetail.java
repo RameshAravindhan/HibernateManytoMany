@@ -15,9 +15,11 @@ public class InstructorDetail {
     @Column(name = "hobby")
     private String hobby;
 
-    @OneToOne(mappedBy = "instructorDetail", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy="instructorDetail",
+            cascade={CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
+                    CascadeType.REFRESH})
+    //@JoinColumn(name = "")
     private Instructor instructor;
-
 
     public InstructorDetail(String channel, String hobby) {
         this.channel = channel;

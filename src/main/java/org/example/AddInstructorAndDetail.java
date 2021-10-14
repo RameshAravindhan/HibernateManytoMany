@@ -4,23 +4,24 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class MainClass {
+public class AddInstructorAndDetail {
 
     public static void main(String[] args) {
 
-        SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Instructor.class).addAnnotatedClass(InstructorDetail.class).buildSessionFactory();
+        SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Instructor.class).addAnnotatedClass(InstructorDetail.class).addAnnotatedClass(Course.class).buildSessionFactory();
 
         Session session = sessionFactory.getCurrentSession();
 
 
         try {
 
-            Instructor instructor = new Instructor("Ramesh2", "Aravind", "email.com");
+            Instructor instructor = new Instructor("Ramesh2", "Aravind2", "email2.com");
 
-            InstructorDetail instructorDetail = new InstructorDetail("UC2", "Play");
+            InstructorDetail instructorDetail = new InstructorDetail("UChannel4", "jog1");
 
 
-            instructor.setInstructorDetail(instructorDetail);
+              instructor.setInstructorDetail(instructorDetail);
+            //instructorDetail.setInstructor(instructor);
 
 
             session.beginTransaction();
@@ -42,7 +43,6 @@ public class MainClass {
 //
 
         } finally {
-
 
             sessionFactory.close();
         }
